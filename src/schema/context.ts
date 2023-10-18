@@ -1,9 +1,9 @@
-import Todo from "./todo/model";
+import TodoModel from "./todo/model";
 
 export default class Context {
-  todo: Todo;
+  todo: TodoModel;
 
   constructor(connection: object, schema: object, req?: any, auth?: any) {
-    this.todo = new Todo(connection, this);
+    this.todo = new TodoModel(connection, this);
   }
 }

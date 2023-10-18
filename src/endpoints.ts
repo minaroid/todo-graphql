@@ -26,21 +26,16 @@ export const saveTodo = (schema: any) => {
   };
 };
 
-export const saveTodoTest = (schema: any) => {
-  console.log("Hello saveTodoTest=>" + JSON.stringify(schema));
+export const getAllTodos = (schema: any) => {
+  console.log("Hello saveTodo=>" + JSON.stringify(schema));
+
   return async (req: any, res: any): Promise<void> => {
     const ctx = await setupWithoutAuthContext(connection, schema);
     let classData = req.body;
     try {
-      const todo = await ctx.todo.save(classData);
-      //   if (gymClass.errors && gymClass.errors.length > 0) {
-      //     res.status(400).send({
-      //       message: `error in external class for external Id: ${classData.externalId}, ${gymClass.errors}`,
-      //       error: gymClass.errors,
-      //     });
-      //     return;
-      //   }
-      res.send(todo || null);
+      const todos = await ctx.todo.repository.find({});
+
+      res.send(todos || null);
     } catch (error: any) {
       console.log(`error while save new todo`, error);
       res.status(400).send({

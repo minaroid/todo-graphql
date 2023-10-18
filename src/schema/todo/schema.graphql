@@ -1,4 +1,8 @@
-type Brand {
+type Query {
+  getAll: [Todo]
+}
+
+type Todo {
   id: ID!
   title: String!
   description: String!

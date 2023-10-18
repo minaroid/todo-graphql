@@ -1,7 +1,7 @@
 import { ApolloServer } from "apollo-server-express";
 import connection from "./database/connection";
 import express from "express";
-import { saveTodo, saveTodoTest } from "./endpoints";
+import { getAllTodos, saveTodo } from "./endpoints";
 import Context from "./schema/context";
 import schema from "./helpers/loadSchema";
 
@@ -23,6 +23,7 @@ const startServer = async () => {
     app.use(express.json());
 
     app.post(`/todo`, saveTodo(schema));
+    app.get(`/todos`, getAllTodos(schema));
 
     const server = new ApolloServer({
       schema,

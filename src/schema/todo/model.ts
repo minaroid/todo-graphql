@@ -28,4 +28,12 @@ export default class Todo {
       return { errors: [error.message] };
     }
   }
+
+  async getAll() {
+    try {
+      return await this.connection.manager.query("select * from todo;");
+    } catch (error: any) {
+      return { errors: [error.message] };
+    }
+  }
 }
